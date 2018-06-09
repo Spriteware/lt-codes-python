@@ -15,20 +15,11 @@ PACKET_SIZE = 65536
 # PACKET_SIZE = 4096
 # PACKET_SIZE = 1024
 ROBUST_FAILURE_PROBABILITY = 0.01
-# NUMPY_TYPE = np.uint64
+NUMPY_TYPE = np.uint64
 # NUMPY_TYPE = np.uint32
-NUMPY_TYPE = np.uint8
+# NUMPY_TYPE = np.uint16
+# NUMPY_TYPE = np.uint8
 EPSILON = 0.00001
-
-def dim_reduction():
-    if NUMPY_TYPE == np.uint64:
-        return 64 // 8 
-    if NUMPY_TYPE == np.uint32:
-        return 32 // 8 
-    if NUMPY_TYPE == np.uint16:
-        return 16 // 8 
-    if NUMPY_TYPE == np.uint8:
-        return 8 // 8 
 
 def blocks_read(file, filesize):
     """ Read the given file by blocks of `PACKET_SIZE` and use np.frombuffer() improvement.
@@ -36,14 +27,14 @@ def blocks_read(file, filesize):
     Byt default, we store each octet into a np.uint8 array space, but it is also possible
     to store up to 8 octets together in a np.uint64 array space.  
     
-    This process is not saving memory but it helps reduce dimensionnality, which is really important
-    for algorithms like LT Codes that are at least O(N²)
+    This process is not saving memory but it helps reduce dimensionnality, especially for the 
+    XOR operation in the encoding. Example:
+    * np.frombuffer(b'\x01\x02', dtype=np.uint8) => array([1, 2], dtype=uint8)
+    * np.frombuffer(b'\x01\x02', dtype=np.uint16) => array([513], dtype=uint16)
     """
 
-    dim = PACKET_SIZE // dim_reduction()
     blocks_n = math.ceil(filesize / PACKET_SIZE)
-    blocks = np.empty((blocks_n, dim), dtype=NUMPY_TYPE)
-    # blocks = []
+    blocks = []
 
     # Read data by blocks of size PACKET_SIZE
     for i in range(blocks_n):
@@ -56,17 +47,10 @@ def blocks_read(file, filesize):
         # The last read bytes needs a right padding to be XORed in the future
         if len(data) != PACKET_SIZE:
             data = data + bytearray(PACKET_SIZE - len(data))
-            # print("hello")
             assert i == blocks_n-1, "Packet #{} has a not handled size of {} bytes".format(i, len(blocks[i]))
-        # print(len(data), NUMPY_TYPE)
-        # Paquets are converted from `PACKET_SIZE` to `dim`
-        blocks[i] = np.frombuffer(data, dtype=NUMPY_TYPE)
-        print(len(blocks[i]))
-        # test = np.frombuffer(data, dtype=NUMPY_TYPE)
-        # print(test.shape)
-        # blocks.append(np.frombuffer(data, dtype=NUMPY_TYPE))
 
-    # print(blocks.shape)
+        # Paquets are condensed in the right array type
+        blocks.append(np.frombuffer(data, dtype=NUMPY_TYPE))
 
     return blocks
 
@@ -93,7 +77,7 @@ def log(process, iteration, total, start_time):
 
     if time.time() - log_actual_time > 1 or iteration == total - 1:
         log_actual_time = time.time()
-        speed = (iteration + 1) / (log_actual_time - start_time + EPSILON) * PACKET_SIZE * dim_reduction() / (1024 * 1024)
+        speed = (iteration + 1) / (log_actual_time - start_time + EPSILON) * PACKET_SIZE / (1024 * 1024)
         print("-- {}: {}/{} - {:.2%} symbols at {:.2f} MB/s".format(process, iteration + 1, total, (iteration + 1) / total, speed), end="\r", flush=True)
 
 # //////////////////
