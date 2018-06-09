@@ -57,6 +57,7 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser(description="Robust implementation of LT Codes encoding/decoding process.")
     parser.add_argument("filename", help="file path of the file to split in blocks")
+    parser.add_argument("-r", "--redundancy", help="the wanted redundancy.", default=2.0, type=float)
     parser.add_argument("--systematic", help="ensure that the k first drops are exactaly the k first blocks (systematic LT Codes)", action="store_true")
     parser.add_argument("--verbose", help="increase output verbosity", action="store_true")
     parser.add_argument("--x86", help="avoid using np.uint64 for x86-32bits systems", action="store_true")
@@ -70,6 +71,7 @@ if __name__ == "__main__":
 
         filesize = os.path.getsize(args.filename)
         print("Filesize: {} bytes".format(filesize))
+        print("Filesize: {} bytes".format(filesize))
 
         # Splitting the file in blocks
         file_blocks = blocks_read(file, filesize)
@@ -77,11 +79,10 @@ if __name__ == "__main__":
 
         # Generating symbols (or drops) from the blocks
         file_symbols = []
-        for curr_symbol in encode(file_blocks, drops_quantity=int(file_blocks_n * 2)):
+        for curr_symbol in encode(file_blocks, drops_quantity=int(file_blocks_n * args.redundancy)):
             file_symbols.append(curr_symbol)
 
-        # Simulating the loss of packets
-        # exit()
+        # HERE: Simulating the loss of packets?
 
         # Recovering the blocks from symbols
         recovered_blocks, recovered_n = decode(file_symbols, blocks_quantity=file_blocks_n)
@@ -96,7 +97,10 @@ if __name__ == "__main__":
             exit()
 
         splitted = args.filename.split(".")
-        filename_copy = "".join(splitted[:-1]) + "-copy." + splitted[-1] 
+        if len(splitted) > 1:
+            filename_copy = "".join(splitted[:-1]) + "-copy." + splitted[-1] 
+        else:
+            filename_copy = args.filename + "-copy"
 
         # Write down the recovered blocks in a copy 
         with open(filename_copy, "wb") as file_copy:
