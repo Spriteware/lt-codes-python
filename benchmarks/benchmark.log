@@ -1,0 +1,204 @@
+Creating dummy data for size=100
+======================================
+Redundancy: 1.5
+Systematic: True
+Filesize: 100 bytes
+Blocks: 1
+Drops: 1
+
+Generating graph...
+Ready for encoding.
+-- Encoding: 1/1 - 100.00% symbols at 625.00 MB/s       ~0.00s
+----- Correctly dropped 1 symbols (packet size=65536)
+Graph built back. Ready for decoding.
+
+----- Solved Blocks  1/ 1 --
+Wrote 100 bytes in dummy-copy
+
+Creating dummy data for size=102400
+======================================
+Redundancy: 1.5
+Systematic: True
+Filesize: 102400 bytes
+Blocks: 2
+Drops: 3
+
+Generating graph...
+Ready for encoding.
+-- Encoding: 3/3 - 100.00% symbols at 170.80 MB/s       ~0.00s
+----- Correctly dropped 3 symbols (packet size=65536)
+Graph built back. Ready for decoding.
+-- Decoding: 2/2 - 100.00% symbols at 1250.00 MB/s       ~0.00s
+----- Solved Blocks  2/ 2 --
+Wrote 102400 bytes in dummy-copy
+
+Creating dummy data for size=1048576
+======================================
+Redundancy: 1.5
+Systematic: True
+Filesize: 1048576 bytes
+Blocks: 16
+Drops: 24
+
+Generating graph...
+Ready for encoding.
+-- Encoding: 24/24 - 100.00% symbols at 715.47 MB/s       ~0.00s
+----- Correctly dropped 24 symbols (packet size=65536)
+Graph built back. Ready for decoding.
+-- Decoding: 16/16 - 100.00% symbols at 10000.00 MB/s       ~0.00s
+----- Solved Blocks 16/16 --
+Wrote 983040 bytes in dummy-copy
+
+Creating dummy data for size=104857600
+======================================
+Redundancy: 1.5
+Systematic: True
+Filesize: 104857600 bytes
+Blocks: 1600
+Drops: 2400
+
+Generating graph...
+Ready for encoding.
+-- Encoding: 2400/2400 - 100.00% symbols at 724.93 MB/s       ~0.21s
+----- Correctly dropped 2400 symbols (packet size=65536)
+Graph built back. Ready for decoding.
+-- Decoding: 1600/1600 - 100.00% symbols at 323.91 MB/s       ~0.31s
+----- Solved Blocks 1600/1600 --
+Wrote 104792064 bytes in dummy-copy
+
+Creating dummy data for size=419430400
+======================================
+Redundancy: 1.5
+Systematic: True
+Filesize: 419430400 bytes
+Blocks: 6400
+Drops: 9600
+
+Generating graph...
+Ready for encoding.
+-- Encoding: 9600/9600 - 100.00% symbols at 674.76 MB/s       ~0.89s
+----- Correctly dropped 9600 symbols (packet size=65536)
+Graph built back. Ready for decoding.
+-- Decoding: 6400/6400 - 100.00% symbols at 99.50 MB/s       ~4.02s
+----- Solved Blocks 6400/6400 --
+Wrote 419364864 bytes in dummy-copy
+
+Creating dummy data for size=838860800
+======================================
+Redundancy: 1.5
+Systematic: True
+Filesize: 838860800 bytes
+Blocks: 12800
+Drops: 19200
+
+Generating graph...
+Ready for encoding.
+-- Encoding: 19200/19200 - 100.00% symbols at 525.49 MB/s       ~2.28s
+----- Correctly dropped 19200 symbols (packet size=65536)
+Graph built back. Ready for decoding.
+-- Decoding: 12800/12800 - 100.00% symbols at 48.95 MB/s       ~16.34s
+----- Solved Blocks 12800/12800 --
+Wrote 838795264 bytes in dummy-copy
+
+Creating dummy data for size=1258291200
+======================================
+Redundancy: 1.5
+Systematic: True
+Filesize: 1258291200 bytes
+Blocks: 19200
+Drops: 28800
+
+Generating graph...
+Ready for encoding.
+-- Encoding: 28800/28800 - 100.00% symbols at 465.99 MB/s       ~3.86s
+----- Correctly dropped 28800 symbols (packet size=65536)
+Graph built back. Ready for decoding.
+-- Decoding: 19200/19200 - 100.00% symbols at 30.13 MB/s       ~39.82s
+----- Solved Blocks 19200/19200 --
+Wrote 1258225664 bytes in dummy-copy
+
+Creating dummy data for size=1264867868
+======================================
+Redundancy: 1.5
+Systematic: True
+Filesize: 1264867868 bytes
+Blocks: 19301
+Drops: 28951
+
+Generating graph...
+Ready for encoding.
+-- Encoding: 28951/28951 - 100.00% symbols at 543.55 MB/s       ~3.33s
+----- Correctly dropped 28951 symbols (packet size=65536)
+Graph built back. Ready for decoding.
+-- Decoding: 19301/19301 - 100.00% symbols at 30.67 MB/s       ~39.33s
+----- Solved Blocks 19301/19301 --
+Wrote 1264867868 bytes in dummy-copy
+
+Creating dummy data for size=2097152000
+======================================
+Redundancy: 1.5
+Systematic: True
+Filesize: 2097152000 bytes
+Blocks: 32000
+Drops: 48000
+
+Generating graph...
+Ready for encoding.
+-- Encoding: 48000/48000 - 100.00% symbols at 466.18 MB/s       ~6.44s
+----- Correctly dropped 48000 symbols (packet size=65536)
+Graph built back. Ready for decoding.
+-- Decoding: 32000/32000 - 100.00% symbols at 19.21 MB/s       ~104.10s
+----- Solved Blocks 32000/32000 --
+Wrote 2097086464 bytes in dummy-copy
+
+Creating dummy data for size=2516582400
+======================================
+Redundancy: 1.5
+Systematic: True
+Filesize: 2516582400 bytes
+Blocks: 38400
+Drops: 57600
+
+Generating graph...
+Ready for encoding.
+-- Encoding: 57600/57600 - 100.00% symbols at 420.50 MB/s       ~8.56s
+----- Correctly dropped 57600 symbols (packet size=65536)
+Graph built back. Ready for decoding.
+-- Decoding: 38400/38400 - 100.00% symbols at 15.61 MB/s       ~153.71s
+----- Solved Blocks 38400/38400 --
+Wrote 2516516864 bytes in dummy-copy
+
+Creating dummy data for size=2931315179
+======================================
+Redundancy: 1.5
+Systematic: True
+Filesize: 2931315179 bytes
+Blocks: 44729
+Drops: 67093
+
+Generating graph...
+Ready for encoding.
+-- Encoding: 67093/67093 - 100.00% symbols at 495.22 MB/s       ~8.47s
+----- Correctly dropped 67093 symbols (packet size=65536)
+Graph built back. Ready for decoding.
+-- Decoding: 44729/44729 - 100.00% symbols at 10.41 MB/s       ~268.49s
+----- Solved Blocks 44729/44729 --
+Wrote 2931315179 bytes in dummy-copy
+
+Creating dummy data for size=3774873600
+======================================
+Redundancy: 1.5
+Systematic: True
+Filesize: 3774873600 bytes
+Blocks: 57600
+Drops: 86400
+
+Generating graph...
+Ready for encoding.
+-- Encoding: 86400/86400 - 100.00% symbols at 233.35 MB/s       ~23.14s
+----- Correctly dropped 86400 symbols (packet size=65536)
+Graph built back. Ready for decoding.
+-- Decoding: 57600/57600 - 100.00% symbols at 8.44 MB/s       ~426.36s
+
+----- Solved Blocks 57600/57600 --
+Wrote 3774808064 bytes in dummy-copy

@@ -33,17 +33,15 @@ def encode(blocks, drops_quantity):
 
     # Display statistics
     blocks_n = len(blocks)
-    print("Blocks:", blocks_n)
-    print("Drops:", drops_quantity)
-    print("Generating graph...")
-
     assert blocks_n <= drops_quantity, "Because of the unicity in the random neighbors, it is need to drop at least the same amount of blocks"
+
+    print("Generating graph...")
+    start_time = time.time()
 
     # Generate random indexes associated to random degrees, seeded with the symbol id
     random_degrees = get_degrees_from("robust", blocks_n, k=drops_quantity)
 
     print("Ready for encoding.", flush=True)
-    start_time = time.time()
 
     for i in range(drops_quantity):
         

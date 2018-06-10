@@ -18,7 +18,7 @@ NUMPY_TYPE = np.uint64
 # NUMPY_TYPE = np.uint32
 # NUMPY_TYPE = np.uint16
 # NUMPY_TYPE = np.uint8
-EPSILON = 0.00001
+EPSILON = 0.0001
 
 class Symbol:
     __slots__ = ["index", "degree", "data", "neighbors"] # fixing attributes may reduce memory usage
@@ -44,7 +44,6 @@ def generate_indexes(symbol_index, degree, blocks_quantity):
 
     To be sure to get the same random indexes, we need to pass 
     """
-
     if SYSTEMATIC and symbol_index < blocks_quantity:
         indexes = [symbol_index]               
         degree = 1     
@@ -62,6 +61,10 @@ def log(process, iteration, total, start_time):
         log_actual_time = time.time()
 
     if time.time() - log_actual_time > 1 or iteration == total - 1:
+        
         log_actual_time = time.time()
-        speed = (iteration + 1) / (log_actual_time - start_time + EPSILON) * PACKET_SIZE / (1024 * 1024)
-        print("-- {}: {}/{} - {:.2%} symbols at {:.2f} MB/s".format(process, iteration + 1, total, (iteration + 1) / total, speed), end="\r", flush=True)
+        elapsed = log_actual_time - start_time + EPSILON
+        speed = (iteration + 1) / elapsed * PACKET_SIZE / (1024 * 1024)
+
+        print("-- {}: {}/{} - {:.2%} symbols at {:.2f} MB/s       ~{:.2f}s".format(
+            process, iteration + 1, total, (iteration + 1) / total, speed, elapsed), end="\r", flush=True)

@@ -10,7 +10,6 @@ def recover_graph(symbols, blocks_quantity):
         neighbors, deg = generate_indexes(symbol.index, symbol.degree, blocks_quantity)
         symbol.neighbors = {x for x in neighbors}
         symbol.degree = deg
-        assert symbol.degree == len(symbol.neighbors)
 
         if VERBOSE:
             symbol.log(blocks_quantity)
@@ -36,6 +35,7 @@ def reduce_neighbors(block_index, blocks, symbols):
             
             if VERBOSE:
                 print("XOR block_{} with symbol_{} :".format(block_index, other_symbol.index), list(other_symbol.neighbors.keys())) 
+
 
 def decode(symbols, blocks_quantity):
     """ Iterative decoding - Decodes all the passed symbols to build back the data as blocks. 

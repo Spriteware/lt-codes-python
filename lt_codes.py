@@ -1,11 +1,13 @@
+import os
+import math
 import argparse
-from core import *
-from distributions import *
-from encoder import *
-from decoder import *
+import numpy as np
+import core
+from encoder import encode
+from decoder import decode
 
 def blocks_read(file, filesize):
-    """ Read the given file by blocks of `PACKET_SIZE` and use np.frombuffer() improvement.
+    """ Read the given file by blocks of `core.PACKET_SIZE` and use np.frombuffer() improvement.
 
     Byt default, we store each octet into a np.uint8 array space, but it is also possible
     to store up to 8 octets together in a np.uint64 array space.  
@@ -16,24 +18,24 @@ def blocks_read(file, filesize):
     * np.frombuffer(b'\x01\x02', dtype=np.uint16) => array([513], dtype=uint16)
     """
 
-    blocks_n = math.ceil(filesize / PACKET_SIZE)
+    blocks_n = math.ceil(filesize / core.PACKET_SIZE)
     blocks = []
 
-    # Read data by blocks of size PACKET_SIZE
+    # Read data by blocks of size core.PACKET_SIZE
     for i in range(blocks_n):
             
-        data = bytearray(file.read(PACKET_SIZE))
+        data = bytearray(file.read(core.PACKET_SIZE))
 
         if not data:
             raise "stop"
 
         # The last read bytes needs a right padding to be XORed in the future
-        if len(data) != PACKET_SIZE:
-            data = data + bytearray(PACKET_SIZE - len(data))
+        if len(data) != core.PACKET_SIZE:
+            data = data + bytearray(core.PACKET_SIZE - len(data))
             assert i == blocks_n-1, "Packet #{} has a not handled size of {} bytes".format(i, len(blocks[i]))
 
         # Paquets are condensed in the right array type
-        blocks.append(np.frombuffer(data, dtype=NUMPY_TYPE))
+        blocks.append(np.frombuffer(data, dtype=core.NUMPY_TYPE))
 
     return blocks
 
@@ -48,7 +50,7 @@ def blocks_write(blocks, file, filesize):
 
     # Convert back the bytearray to bytes and shrink back 
     last_bytes = bytes(recovered_blocks[-1])
-    shrinked_data = last_bytes[:filesize % PACKET_SIZE]
+    shrinked_data = last_bytes[:filesize % core.PACKET_SIZE]
     file_copy.write(shrinked_data)
 
 #########################################################
@@ -63,23 +65,29 @@ if __name__ == "__main__":
     parser.add_argument("--x86", help="avoid using np.uint64 for x86-32bits systems", action="store_true")
     args = parser.parse_args()
 
-    NUMPY_TYPE = np.uint32 if args.x86 else NUMPY_TYPE
-    SYSTEMATIC = True if args.systematic else SYSTEMATIC 
-    VERBOSE = True if args.verbose else VERBOSE    
+    core.NUMPY_TYPE = np.uint32 if args.x86 else core.NUMPY_TYPE
+    core.SYSTEMATIC = True if args.systematic else core.SYSTEMATIC 
+    core.VERBOSE = True if args.verbose else core.VERBOSE    
 
     with open(args.filename, "rb") as file:
 
+        print("Redundancy: {}".format(args.redundancy))
+        print("Systematic: {}".format(core.SYSTEMATIC))
+
         filesize = os.path.getsize(args.filename)
         print("Filesize: {} bytes".format(filesize))
-        print("Filesize: {} bytes".format(filesize))
 
-        # Splitting the file in blocks
+        # Splitting the file in blocks & compute drops
         file_blocks = blocks_read(file, filesize)
         file_blocks_n = len(file_blocks)
+        drops_quantity = int(file_blocks_n * args.redundancy)
+
+        print("Blocks: {}".format(file_blocks_n))
+        print("Drops: {}\n".format(drops_quantity))
 
         # Generating symbols (or drops) from the blocks
         file_symbols = []
-        for curr_symbol in encode(file_blocks, drops_quantity=int(file_blocks_n * args.redundancy)):
+        for curr_symbol in encode(file_blocks, drops_quantity=drops_quantity):
             file_symbols.append(curr_symbol)
 
         # HERE: Simulating the loss of packets?
@@ -87,7 +95,7 @@ if __name__ == "__main__":
         # Recovering the blocks from symbols
         recovered_blocks, recovered_n = decode(file_symbols, blocks_quantity=file_blocks_n)
         
-        if args.verbose:
+        if core.VERBOSE:
             print(recovered_blocks)
             print("------ Blocks :  \t-----------")
             print(file_blocks)
