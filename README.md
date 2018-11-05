@@ -2,7 +2,7 @@
 
 This project is the implementation in Python of the iterative encoding and iterative decoding algorithms of the [LT Codes](https://en.wikipedia.org/wiki/LT_codes), 
 an error correction code based on the principles of [Fountain Codes](https://en.wikipedia.org/wiki/Fountain_code).
-I have written a whole article on LT Codes and this snippets that you can find here : [franpapers.com](franpapers.com)
+I have written a whole article on LT Codes and this snippet that you can find here : [franpapers.com](franpapers.com)
 
 The encoder and decoder are optimized to handle big transfers for files between 1MB to 1GB at high speed.
 
@@ -21,23 +21,23 @@ An example describing how to use the implementation is in `lt_codes.py`. However
 * `md5_checker.sh` calls `lt_codes.py` and then compare the integrity of the original file with the newly created file. The integrity check is made with `md5sum.exe`, remove the ".exe" if you work on Unix.
 
 ## Benchmarks
-The time consumed by the encoding and decoding process is completely related to the size of the file to encode and the wantedd redundancy.
-I have made some measure on a Intel i5 @ 2.30GHz with a 1.5 redundancy : 
+The time consumed by the encoding and decoding process is completely related to the size of the file to encode and the wanted redundancy.
+I have made some measure on an Intel i5 @ 2.30GHz with a 1.5 redundancy : 
 
 <table>
 <thead>
 <tr>
-<td rowspan="2"><strong>Taille (MB)</strong></td>
-<td rowspan="2"><strong>Blocs</strong></td>
-<td rowspan="2"><strong>Symboles</strong></td>
-<td colspan="2"><strong>Encodage</strong></td>
-<td colspan="2"><strong>Décodage</strong></td>
+<td rowspan="2"><strong>Size (MB)</strong></td>
+<td rowspan="2"><strong>Blocks</strong></td>
+<td rowspan="2"><strong>Symbols</strong></td>
+<td colspan="2"><strong>Encoding</strong></td>
+<td colspan="2"><strong>Decoding</strong></td>
 </tr>
 <tr>
-<td><strong>Temps (s)</strong></td>
-<td><strong>Vitesse (MB/s)</strong></td>
-<td><strong>Temps (s)</strong></td>
-<td><strong>Vitesse (MB/s)</strong></td>
+<td><strong>Time (s)</strong></td>
+<td><strong>Speed (MB/s)</strong></td>
+<td><strong>Time (s)</strong></td>
+<td><strong>Speed (MB/s)</strong></td>
 </tr>
 </thead>
 <tbody>
