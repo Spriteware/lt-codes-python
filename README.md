@@ -1,7 +1,7 @@
 # Fountain Code: Efficient Python Implementation of LT Codes
 
 This project is the implementation in Python of the iterative encoding and iterative decoding algorithms of the [LT Codes](https://en.wikipedia.org/wiki/LT_codes), 
-an error correction code based on the principles of [Fountain Codes](https://en.wikipedia.org/wiki/Fountain_code).
+an error correction code based on the principles of [Fountain Codes](https://en.wikipedia.org/wiki/Fountain_code) by Michael Luby.
 I have written a whole article on LT Codes and this snippet that you can find here : [franpapers.com](franpapers.com)
 
 The encoder and decoder are optimized to handle big transfers for files between 1MB to 1GB at high speed.
@@ -90,3 +90,20 @@ I have made some measure on an Intel i5 @ 2.30GHz with a 1.5 redundancy :
 </table>
 
 <img src="https://franpapers.com/wp-content/uploads/2018/06/word-image-18.png" width=500 />
+
+
+## References
+
+> M.Luby, "LT Codes", The 43rd Annual IEEE Symposium on Foundations of Computer Science, 2002.
+
+## License
+
+MIT License
+Copyright (c) 2018 François Andrieux
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
