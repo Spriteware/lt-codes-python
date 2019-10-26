@@ -2,7 +2,7 @@
 
 This project is the implementation in Python of the iterative encoding and iterative decoding algorithms of the [LT Codes](https://en.wikipedia.org/wiki/LT_codes), 
 an error correction code based on the principles of [Fountain Codes](https://en.wikipedia.org/wiki/Fountain_code) by Michael Luby.
-I have written a whole article on LT Codes and this snippet that you can find here : [franpapers.com](franpapers.com)
+I have written a whole article on LT Codes and this snippet that you can find here : [franpapers.com](https://franpapers.com/en/algorithmic/2018-introduction-to-fountain-codes-lt-codes-with-python/)
 
 The encoder and decoder are optimized to handle big transfers for files between 1MB to 1GB at high speed.
 
