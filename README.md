@@ -18,10 +18,10 @@ An example describing how to use the implementation is in `lt_codes.py`. However
 * `distributions.py` contains the two functions that generate degrees based on the ideal soliton and robust soliton distributions
 * `encoder.py` contains the encoding algorithm
 * `decoder.py` contains the decoding algorithm
-* `md5_checker.sh` calls `lt_codes.py` and then compare the integrity of the original file with the newly created file. The integrity check is made with `md5sum.exe`, remove the ".exe" if you work on Unix.
+* `md5_checker.sh` calls `lt_codes.py` and then compare the integrity of the original file with the newly created file. The integrity check is made with `md5sum`, add the ".exe" if you work on Window. Replace it by `md5 -r` if you work on Mac, or run `brew install md5sha1sum`.
 
 ## Benchmarks
-The time consumed by the encoding and decoding process is completely related to the size of the file to encode and the wanted redundancy.
+The time consumed by the encoding and decoding process is completely related to the size of the file to encode and the wanted redundancy.   
 I have made some measure on an Intel i5 @ 2.30GHz with a 1.5 redundancy : 
 
 <table>
@@ -90,6 +90,8 @@ I have made some measure on an Intel i5 @ 2.30GHz with a 1.5 redundancy :
 </table>
 
 <img src="https://franpapers.com/wp-content/uploads/2018/06/word-image-18.png" width=500 />
+
+Note: `PACKET_SIZE` is set to 65536 for theses tests. Lowering it will result in lower speeds but it might be necessary it to send small files in many chunks.
 
 
 ## References
