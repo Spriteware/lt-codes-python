@@ -91,7 +91,7 @@ I have made some measure on an Intel i5 @ 2.30GHz with a 1.5 redundancy :
 
 <img src="https://franpapers.com/wp-content/uploads/2018/06/word-image-18.png" width=500 />
 
-Note: `PACKET_SIZE` is set to 65536 for theses tests. Lowering it will result in lower speeds but it might be necessary it to send small files in many chunks.
+Note: `PACKET_SIZE` is set to 65536 for theses tests. Lowering it will result in lower speeds but it might be necessary to send small files in many chunks.
 
 
 ## References
