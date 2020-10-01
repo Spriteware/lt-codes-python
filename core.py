@@ -1,4 +1,4 @@
-#importing modules,all of these modules are in-built
+#importing modules
 import os
 import sys
 import math
@@ -6,6 +6,7 @@ import time
 import numpy as np
 import random
 from random import choices
+#all of these modules are in-built
 
 SYSTEMATIC = False
 VERBOSE = False
