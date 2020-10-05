@@ -1,19 +1,36 @@
 # Fountain Code: Efficient Python Implementation of LT Codes
 
-This project is the implementation in Python of the iterative encoding and iterative decoding algorithms of the [LT Codes](https://en.wikipedia.org/wiki/LT_codes), 
+This project is the implementation in Python of the iterative encoding and iterative decoding algorithms of the [LT Codes](https://en.wikipedia.org/wiki/LT_codes),
 an error correction code based on the principles of [Fountain Codes](https://en.wikipedia.org/wiki/Fountain_code) by Michael Luby.
 I have written a whole article on LT Codes and this snippet that you can find here : [franpapers.com](https://franpapers.com/en/algorithmic/2018-introduction-to-fountain-codes-lt-codes-with-python/)
 
 The encoder and decoder are optimized to handle big transfers for files between 1MB to 1GB at high speed.
 
-## How to use it
+### Installation
 
-Usage (python 3.x):
+This implementation requires at least python 3.x.
+Some packages are not built-in. To install them with `pip` you can do:
+
 ```
-python lt_codes.py filename [-h] [-r REDUNDANCY] [--systematic] [--verbose] [--x86]
+$ pip install -r requirements.txt
 ```
 
-An example describing how to use the implementation is in `lt_codes.py`. However:
+## Usage
+
+An example describing how to use the implementation is in `lt_codes.py`, and you can use it to encode/decode a file on the fly (creates a file copy):
+```
+$ python lt_codes.py filename [-h] [-r REDUNDANCY] [--systematic] [--verbose] [--x86]
+```
+
+As an example, here is a basic test to ensure the integrity of the final file:
+```
+$ echo "Hello!" > test.txt
+$ python lt_codes.py test.txt --systematic
+```
+A new file test-copy.txt should be created with the same content.
+
+### Content
+
 * `core.py` contains the Symbol class, constants and functions that are used in both encoding and decoding.
 * `distributions.py` contains the two functions that generate degrees based on the ideal soliton and robust soliton distributions
 * `encoder.py` contains the encoding algorithm
@@ -21,8 +38,8 @@ An example describing how to use the implementation is in `lt_codes.py`. However
 * `md5_checker.sh` calls `lt_codes.py` and then compare the integrity of the original file with the newly created file. The integrity check is made with `md5sum`, add the ".exe" if you work on Window. Replace it by `md5 -r` if you work on Mac, or run `brew install md5sha1sum`.
 
 ## Benchmarks
-The time consumed by the encoding and decoding process is completely related to the size of the file to encode and the wanted redundancy.   
-I have made some measure on an Intel i5 @ 2.30GHz with a 1.5 redundancy : 
+The time consumed by the encoding and decoding process is completely related to the size of the file to encode and the wanted redundancy.
+I have made some measure on an Intel i5 @ 2.30GHz with a 1.5 redundancy :
 
 <table>
 <thead>
